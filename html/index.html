@@ -1,4 +1,5 @@
-<html>
+<!doctype html>
+<html lang="en" ng-app="trudiedo">
   <head>
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
@@ -7,24 +8,39 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
     <link rel="stylesheet" href="css/app.css">
     <!-- Latest compiled and minified JavaScript -->
+    <script src="https://code.jquery.com/jquery-2.1.4.min.js">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
     <script src="javascript/app.js"></script>
   </head>
-  <body>
+  <body >
     <nav class="navbar navbar-default">
       <!-- <div class="container-fluid">-->
+      <div class="container">
         <div class="navbar-header">
+          <a href="/" class="pull-left"><img alt="trudie do" src="images/trudiedo-logo.png"/></a>
           <a class="navbar-brand" href="/">
-            <img alt="Brand" src="images/trudiedo-logo.png">trudie do
+            trudie do
           </a>
         </div>
+      </div>
       <!-- </div> -->
     </nav>
-    <div class="container">
-      <h1>trudie do</h1>
-  What will she do? 
-Tomorrow?  Today? 
+    <div class="container" ng-controller="DosController as dos">
+      <ul class="list-group">
+        <li class="list-group-item" ng-repeat="todo in dos.dos">
+          <h3> {{ todo.text }} 
+            <em class="pull-right">{{ todo.date | date:'MM/dd/yyyy' }}</em>
+          </h3>
+        </li>
+        <li class="list-group-item">
+          <form name="newdoForm" ng-submit="dos.newDo(>
+            <fieldset class="form-group">
+              <input ng-model="todo.text" class="form-control" placeholder="New Do" ng-keyup="$event.keyCode == 13 && myFunc()" ></input>
+            </fieldset> 
+          </form>
+        </li>
+      </ul>
     </div>
   </body>
 </html>
