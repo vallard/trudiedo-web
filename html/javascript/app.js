@@ -8,7 +8,7 @@
     this.theNewDo = {};
     this.tagArray = [];
     for (var i=0;i< dos.length; i++){
-      this.tagArray[i] = ""; 
+      this.tagArray.push(""); 
     }
 
     this.newDo = function(theNewDo){
@@ -16,11 +16,15 @@
       theNewDo.tags = [];
       this.dos.push(theNewDo);
       this.theNewDo = {};
+      this.tagArray.push("");
     };
 
     this.addTag = function(index, newTag) {
       // check for duplicate tags as we don't allow this. 
-      for (var i=0;this.dos[index].tags.length; i++){
+      console.log(index);
+      console.log(this.dos[index].tags.length);
+      for (var i=0; i < this.dos[index].tags.length; i++){
+        console.log("checking");
         if(newTag === this.dos[index].tags[i]){
           this.tagArray[index] = "";
           return; 
