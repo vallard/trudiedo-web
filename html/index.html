@@ -27,16 +27,21 @@
       <!-- </div> -->
     </nav>
     <div class="container" ng-controller="DosController as dos">
+      <h1>Dos for Trudie</h1>
       <ul class="list-group">
         <li class="list-group-item" ng-repeat="todo in dos.dos">
           <h3> {{ todo.text }} 
             <em class="pull-right">{{ todo.date | date:'MM/dd/yyyy' }}</em>
           </h3>
+            <a href="/tags/{{ tag | escape }}" class="btn btn-info btn-small" ng-repeat="tag in todo.tags">{{ tag }}</a>
+            <form name="addTagForm" ng-submit="dos.addTag($index, dos.tagArray[$index])">
+            <input ng-model="dos.tagArray[$index]" placeholder="Add Tag" ng-keyup="$event.keyCode == 13 && myFunc()"></input>
+            </form>
         </li>
         <li class="list-group-item">
-          <form name="newdoForm" ng-submit="dos.newDo(>
+          <form name="newdoForm" ng-submit="dos.newDo(dos.theNewDo)">
             <fieldset class="form-group">
-              <input ng-model="todo.text" class="form-control" placeholder="New Do" ng-keyup="$event.keyCode == 13 && myFunc()" ></input>
+              <input ng-model="dos.theNewDo.text" class="form-control" placeholder="New Do" ng-keyup="$event.keyCode == 13 && myFunc()" ></input>
             </fieldset> 
           </form>
         </li>
