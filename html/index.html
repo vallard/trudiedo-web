@@ -27,23 +27,33 @@
       <!-- </div> -->
     </nav>
     <div class="container" ng-controller="DosController as dos">
-      <h1>Dos for Trudie</h1>
-      <ul class="list-group">
-        <li class="list-group-item" ng-repeat="todo in dos.dos">
-          <h3> {{ todo.text }} 
-            <em class="pull-right">{{ todo.date | date:'MM/dd/yyyy' }}</em>
-          </h3>
-            <a href="/tags/{{ tag | escape }}" class="btn btn-info btn-small" ng-repeat="tag in todo.tags">{{ tag }}</a>
-            <form name="addTagForm" ng-submit="dos.addTag($index, dos.tagArray[$index])">
-            <input ng-model="dos.tagArray[$index]" placeholder="Add New Tag" ng-keyup="$event.keyCode == 13 && myFunc()"></input>
-            </form>
+      <div class="row">
+        <h1 class="col-md-12">Dos for Trudie</h1>
+      </div>
+      <div class="row">
+        <ul class="list-group col-md-12">
+        <li class="list-group-item row" ng-repeat="todo in dos.dos">
+          <div class="col-md-1">
+            <input ng-model="todo.complete" type="checkbox"/> 
+          </div>
+          <div class="col-md-8">
+            <h3> {{ todo.text }} 
+              <em class="pull-right">{{ todo.date | date:'MM/dd/yyyy' }}</em>
+            </h3>
+              <a href="/tags/{{ tag | escape }}" class="btn btn-info btn-small" ng-repeat="tag in todo.tags">{{ tag }}</a>
+              <form name="addTagForm" ng-submit="dos.addTag($index, dos.tagArray[$index])">
+              <input ng-model="dos.tagArray[$index]" placeholder="Add New Tag" ng-keyup="$event.keyCode == 13 && myFunc()"></input>
+              </form>
+          </div>
         </li>
-        <li class="list-group-item">
-          <form name="newdoForm" ng-submit="dos.newDo(dos.theNewDo)">
-            <fieldset class="form-group">
-              <input ng-model="dos.theNewDo.text" class="form-control" placeholder="New Do" ng-keyup="$event.keyCode == 13 && myFunc()" ></input>
-            </fieldset> 
-          </form>
+        <li class="list-group-item row">
+          <div class="col-md-12">
+            <form name="newdoForm" ng-submit="dos.newDo(dos.theNewDo)">
+              <fieldset class="form-group">
+                <input ng-model="dos.theNewDo.text" class="form-control" placeholder="New Do" ng-keyup="$event.keyCode == 13 && myFunc()" ></input>
+              </fieldset> 
+            </form>
+          </div>
         </li>
       </ul>
     </div>

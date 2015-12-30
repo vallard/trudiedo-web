@@ -21,10 +21,10 @@
 
     this.addTag = function(index, newTag) {
       // check for duplicate tags as we don't allow this. 
-      console.log(index);
-      console.log(this.dos[index].tags.length);
+      //console.log(index);
+      //console.log(this.dos[index].tags.length);
       for (var i=0; i < this.dos[index].tags.length; i++){
-        console.log("checking");
+        //console.log("checking");
         if(newTag === this.dos[index].tags[i]){
           this.tagArray[index] = "";
           return; 
@@ -33,11 +33,16 @@
       this.dos[index].tags.push(newTag);
       this.tagArray[index] = "";
     };
+
+    this.doCheck = function(todo){
+       
+    };
   });
 
   var dos = [{
     text: 'milk', 
     date: 'Jan 02 2015',
+    complete: false,
     tags: [
       'trader joes',
       'costco'
@@ -45,6 +50,7 @@
   }, {
     text: 'shower towel hanger', 
     date: 'June 03 2015',
+    complete: true,
     tags : [
       'val dos',
       'home depot'
