@@ -34,11 +34,11 @@
         <ul class="list-group col-md-12">
         <li class="list-group-item row" ng-repeat="todo in dos.dos">
           <div class="col-md-1">
-            <input ng-model="todo.complete" type="checkbox"/> 
+            <input ng-model="todo.completed" type="checkbox" ng-click="dos.doCheck($index, todo.completed)"/> 
           </div>
           <div class="col-md-8">
             <h3> {{ todo.text }} 
-              <em class="pull-right">{{ todo.date | date:'MM/dd/yyyy' }}</em>
+              <em class="pull-right">{{ todo.createdAt | date:'MM/dd/yyyy' }}</em>
             </h3>
               <a href="/tags/{{ tag | escape }}" class="btn btn-info btn-small" ng-repeat="tag in todo.tags">{{ tag }}</a>
               <form name="addTagForm" ng-submit="dos.addTag($index, dos.tagArray[$index])">

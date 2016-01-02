@@ -3,22 +3,34 @@
   app.filter('escape', function() {
     return window.encodeURIComponent;
   }); 
-  app.controller('DosController', function() {
-    this.dos = dos;   
+  app.controller('DosController', [ '$http', function($http) {
+    // the list of dos
+    var dos = this;
+    dos.dos = [];
+    $http.get('http://localhost:8080/v1/todos').success(function(data) {
+      console.log("got the todos")
+      dos.dos = data;
+    });
+
+    // place holder for new do.
     this.theNewDo = {};
+    // array of new tags for all the dos. 
     this.tagArray = [];
+    // initialize the array of tags. 
     for (var i=0;i< dos.length; i++){
       this.tagArray.push(""); 
     }
 
+    // create a new do
     this.newDo = function(theNewDo){
-      theNewDo.date = Date.now();
+      theNewDo.createdAt = Date.now();
       theNewDo.tags = [];
       this.dos.push(theNewDo);
       this.theNewDo = {};
       this.tagArray.push("");
     };
 
+    // when new tag is added to do
     this.addTag = function(index, newTag) {
       // check for duplicate tags as we don't allow this. 
       //console.log(index);
@@ -34,23 +46,34 @@
       this.tagArray[index] = "";
     };
 
-    this.doCheck = function(todo){
-       
+    // when check box is checked.
+    this.doCheck = function(index, completed){
+      //console.log(completed);
+      this.dos[index].completed = complete;
     };
-  });
+
+    // Update Do
+    this.updateDo = function(index, text) {
+      this.dos[index].text = text;
+    };
+
+
+  }]);
 
   var dos = [{
+    id: 2,
     text: 'milk', 
-    date: 'Jan 02 2015',
-    complete: false,
+    createdAt: 'Jan 02 2015',
+    completed: false,
     tags: [
       'trader joes',
       'costco'
     ]
   }, {
+    id: 1,
     text: 'shower towel hanger', 
-    date: 'June 03 2015',
-    complete: true,
+    createdAt: 'June 03 2015',
+    completed: true,
     tags : [
       'val dos',
       'home depot'
