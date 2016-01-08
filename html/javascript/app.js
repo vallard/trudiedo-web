@@ -35,6 +35,9 @@
       // check for duplicate tags as we don't allow this. 
       //console.log(index);
       //console.log(this.dos[index].tags.length);
+      if (this.dos[index].tags == null){
+        this.dos[index].tags = [];
+      }
       for (var i=0; i < this.dos[index].tags.length; i++){
         //console.log("checking");
         if(newTag === this.dos[index].tags[i]){
