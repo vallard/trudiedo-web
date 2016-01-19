@@ -7,7 +7,7 @@
     // the list of dos
     var dos = this;
     dos.dos = [];
-    $http.get('http://localhost:8080/v1/todos').success(function(data) {
+    $http.get('http://192.168.99.100:8080/v1/todos').success(function(data) {
       console.log("got the todos")
       dos.dos = data;
     });
